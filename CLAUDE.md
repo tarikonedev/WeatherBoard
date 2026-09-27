@@ -13,9 +13,12 @@ Use the DocsExplorer subagent for efficient documentation lookup.
   the database are **not** wired up yet — Open-Meteo, favorites persistence, and session
   validation are all mocked/in-memory. See `backend/CLAUDE.md` for the project structure, build/
   test/run commands, and exactly what's mocked vs. real.
-- **Frontend and auth microservice** — not started yet. There is no `package.json`, git history,
-  or SQL Server instance. Treat `spec.md` as the source of truth for their design until
-  implementation begins.
+- **`frontend/`** — scaffolded: a Vite + React 19 + TypeScript SPA with Tailwind, React Query,
+  and dnd-kit installed. Structure only — every component/hook/context is an empty placeholder
+  with no page content yet. See `frontend/CLAUDE.md` for the folder structure, build/run
+  commands, and exactly what's stubbed.
+- **Auth microservice** — not started yet. There is no SQL Server instance. Treat `spec.md` as
+  the source of truth for its design until implementation begins.
 
 ## What WeatherBoard is
 

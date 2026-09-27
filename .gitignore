@@ -1,0 +1,12 @@
+# Node (root-level tooling, e.g. oxfmt)
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/

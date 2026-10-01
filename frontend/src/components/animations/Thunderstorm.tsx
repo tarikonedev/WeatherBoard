@@ -1,7 +1,7 @@
 interface AnimationProps {
-  isDay: boolean
+  isDay: boolean;
 }
 
 export function Thunderstorm(_props: AnimationProps) {
-  return null
+  return null;
 }

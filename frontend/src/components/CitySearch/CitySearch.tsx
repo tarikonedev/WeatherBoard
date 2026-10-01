@@ -1,3 +1,3 @@
 export function CitySearch() {
-  return null
+  return null;
 }

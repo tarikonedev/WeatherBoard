@@ -1,8 +1,8 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Dashboard } from './components/Dashboard/Dashboard'
-import { FavoritesProvider } from './context/FavoritesContext'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Dashboard } from './components/Dashboard/Dashboard';
+import { FavoritesProvider } from './context/FavoritesContext';
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Dashboard />
       </FavoritesProvider>
     </QueryClientProvider>
-  )
+  );
 }
 
-export default App
+export default App;

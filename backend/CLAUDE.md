@@ -50,6 +50,7 @@ as JSON responses. Add real DTOs only if a response needs to diverge from its en
 cd backend
 dotnet build WeatherBoard.slnx      # build everything
 dotnet test WeatherBoard.slnx       # run the xUnit suite (WeatherBoard.UnitTests)
+dotnet format WeatherBoard.slnx     # format/lint (no custom .editorconfig yet — uses .NET defaults)
 dotnet run --project src/WeatherBoard.Api   # start the API (Swagger UI at /swagger in Development)
 ```
 

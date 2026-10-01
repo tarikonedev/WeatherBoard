@@ -1,7 +1,7 @@
 interface AnimationProps {
-  isDay: boolean
+  isDay: boolean;
 }
 
 export function Fog(_props: AnimationProps) {
-  return null
+  return null;
 }

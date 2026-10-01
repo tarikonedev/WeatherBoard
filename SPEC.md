@@ -2,6 +2,12 @@
 
 *Sep 27, 2026 · @Taras Pokushevskyi*
 
+> **Note:** this spec is the original design document and is not updated line-by-line as
+> implementation choices evolve. Where it diverges from what's actually built, the per-component
+> `CLAUDE.md` files (`backend/CLAUDE.md`, `frontend/CLAUDE.md`) and the code itself are
+> authoritative — e.g. the frontend is on React 19 (not 18) and uses Context (not Zustand) for
+> favorites/UI state.
+
 WeatherBoard is a multi-city weather dashboard: a React (Vite) frontend backed by a .NET API, using Open-Meteo as the weather/geocoding data source.
 
 ## Overview
@@ -39,8 +45,8 @@ Routing the .NET API can cache weather responses, keep an API key server-side if
 
 | Layer | Choice | Notes |
 | --- | --- | --- |
-| Frontend framework | React 18 + Vite | Fast dev server, small prod bundle |
-| Frontend state | React Query (server cache) + Zustand or Context (favorites/UI state) | Query handles polling/refetch of weather |
+| Frontend framework | React 19 + Vite | Fast dev server, small prod bundle |
+| Frontend state | React Query (server cache) + Context (favorites/UI state) | Query handles polling/refetch of weather |
 | Styling | CSS Modules or Tailwind | Card-based, dark-mode friendly |
 | Backend framework | ASP.NET Core Web API (.NET 8) | Minimal APIs or controllers |
 | Backend data access | Entity Framework Core | Maps favorites to the database |

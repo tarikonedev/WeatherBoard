@@ -1,13 +1,13 @@
-import type { ComponentType } from 'react'
-import { ClearSky } from './ClearSky'
-import { Cloudy } from './Cloudy'
-import { Fog } from './Fog'
-import { Rainy } from './Rainy'
-import { Snow } from './Snow'
-import { Thunderstorm } from './Thunderstorm'
+import type { ComponentType } from 'react';
+import { ClearSky } from './ClearSky';
+import { Cloudy } from './Cloudy';
+import { Fog } from './Fog';
+import { Rainy } from './Rainy';
+import { Snow } from './Snow';
+import { Thunderstorm } from './Thunderstorm';
 
 interface AnimationProps {
-  isDay: boolean
+  isDay: boolean;
 }
 
 const animationsByCode: Record<number, ComponentType<AnimationProps>> = {
@@ -17,8 +17,8 @@ const animationsByCode: Record<number, ComponentType<AnimationProps>> = {
   61: Rainy,
   71: Snow,
   95: Thunderstorm,
-}
+};
 
 export function getAnimationForCode(code: number, _isDay: boolean): ComponentType<AnimationProps> {
-  return animationsByCode[code] ?? ClearSky
+  return animationsByCode[code] ?? ClearSky;
 }

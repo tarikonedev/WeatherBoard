@@ -1,1 +1,94 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/*
+ * Design tokens ported from the WeatherBoard Figma file:
+ * https://www.figma.com/design/swNIFORChyAYgKiRC7YVlL/WeatherBoard
+ * Token names mirror the Figma variable/style names (slashes -> dashes) so
+ * they stay traceable back to the source of truth. See frontend/CLAUDE.md
+ * for the full mapping table.
+ */
+@theme {
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Backgrounds */
+  --color-bg-page: #f3f6fb;
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-muted: #eef2f8;
+
+  /* Text */
+  --color-text-primary: #11182b;
+  --color-text-secondary: #5b6479;
+  --color-text-inverse: #ffffff;
+
+  /* Border */
+  --color-border: #dde3ef;
+
+  /* Accent */
+  --color-accent-primary: #2f6fed;
+  --color-accent-primary-hover: #1e58d1;
+  --color-danger: #e5484d;
+
+  /* Weather condition palettes (base + deep) */
+  --color-weather-clear: #4fa6f7;
+  --color-weather-clear-deep: #1e63c9;
+  --color-weather-cloud: #8c9bb5;
+  --color-weather-cloud-deep: #5a6a85;
+  --color-weather-rain: #4a6a8a;
+  --color-weather-rain-deep: #2e4a68;
+  --color-weather-snow: #afc4de;
+  --color-weather-snow-deep: #7792b8;
+  --color-weather-night: #1b2748;
+  --color-weather-night-deep: #0d1430;
+
+  /* Radius — overrides the default sm/md/lg scale to match Figma exactly.
+     `rounded-full` is unchanged (already 9999px by default). */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  /* Type ramp — one utility class per Figma text style, each bundling
+     font-size, line-height, letter-spacing and weight together. */
+  --text-display-temp: 56px;
+  --text-display-temp--line-height: 60px;
+  --text-display-temp--letter-spacing: -1px;
+  --text-display-temp--font-weight: 700;
+
+  --text-heading-city: 22px;
+  --text-heading-city--line-height: 28px;
+  --text-heading-city--font-weight: 600;
+
+  --text-heading-section: 18px;
+  --text-heading-section--line-height: 24px;
+  --text-heading-section--font-weight: 600;
+
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 22px;
+  --text-body-lg--font-weight: 500;
+
+  --text-body: 14px;
+  --text-body--line-height: 20px;
+  --text-body--font-weight: 400;
+
+  --text-body-strong: 14px;
+  --text-body-strong--line-height: 20px;
+  --text-body-strong--font-weight: 600;
+
+  --text-caption: 12px;
+  --text-caption--line-height: 16px;
+  --text-caption--font-weight: 400;
+
+  --text-caption-strong: 12px;
+  --text-caption-strong--line-height: 16px;
+  --text-caption-strong--font-weight: 600;
+
+  --text-label: 13px;
+  --text-label--line-height: 18px;
+  --text-label--font-weight: 500;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+}

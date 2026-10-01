@@ -65,13 +65,65 @@ No test runner is configured yet.
 
 ## What's stubbed vs. real
 
-| Concern | Current state | Real implementation (future) |
+| Concern                                                          | Current state                                                                               | Real implementation (future)                                                                     |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| API client functions (`cities.ts`, `weather.ts`, `favorites.ts`) | Correct method/URL/body shape, but nothing calls them yet                                   | Wire into React Query hooks (`useQuery`/`useMutation`) from real components                      |
+| `FavoritesContext`                                               | Returns a hardcoded empty `favorites: []`, no add/remove/reorder actions                    | Back with React Query cache + mutations that invalidate on success                               |
+| `useLocalTime`                                                   | Returns `''`, no timer                                                                      | `setInterval` + `Intl.DateTimeFormat('en-GB', { timeZone, hour: '2-digit', minute: '2-digit' })` |
+| Animation components                                             | Each renders `null`; `getAnimationForCode` maps only one WMO code per type as a placeholder | Full WMO code ranges per `spec.md`, CSS/SVG-only animations, respect `prefers-reduced-motion`    |
+| Auth                                                             | Not wired — `apiFetch` sends `credentials: 'include'` but no auth microservice exists yet   | Once better-auth is running, ensure the session cookie flows through unchanged                   |
+
+## Design tokens
+
+Tailwind v4 is config-free — theme customization lives in the `@theme` block in `src/index.css`,
+ported from the WeatherBoard Figma file
+(https://www.figma.com/design/swNIFORChyAYgKiRC7YVlL/WeatherBoard). Token names mirror the Figma
+variable/style names (`/` → `-`) so they stay traceable back to source.
+
+**Spacing and `rounded-full` are NOT overridden** — Tailwind's default numeric spacing scale
+(`p-0.5`=2px, `p-1`=4px, `p-2`=8px, `p-3`=12px, `p-4`=16px, `p-5`=20px, `p-6`=24px, `p-8`=32px,
+`p-10`=40px, `p-12`=48px) already matches the Figma spacing scale exactly — use those utilities
+directly instead of inventing new spacing tokens.
+
+| Figma token | Tailwind utility | Value |
 | --- | --- | --- |
-| API client functions (`cities.ts`, `weather.ts`, `favorites.ts`) | Correct method/URL/body shape, but nothing calls them yet | Wire into React Query hooks (`useQuery`/`useMutation`) from real components |
-| `FavoritesContext` | Returns a hardcoded empty `favorites: []`, no add/remove/reorder actions | Back with React Query cache + mutations that invalidate on success |
-| `useLocalTime` | Returns `''`, no timer | `setInterval` + `Intl.DateTimeFormat('en-GB', { timeZone, hour: '2-digit', minute: '2-digit' })` |
-| Animation components | Each renders `null`; `getAnimationForCode` maps only one WMO code per type as a placeholder | Full WMO code ranges per `spec.md`, CSS/SVG-only animations, respect `prefers-reduced-motion` |
-| Auth | Not wired — `apiFetch` sends `credentials: 'include'` but no auth microservice exists yet | Once better-auth is running, ensure the session cookie flows through unchanged |
+| `background/page` | `bg-bg-page` | `#F3F6FB` |
+| `background/surface` | `bg-bg-surface` | `#FFFFFF` |
+| `background/surface-muted` | `bg-bg-surface-muted` | `#EEF2F8` |
+| `text/primary` | `text-text-primary` | `#11182B` |
+| `text/secondary` | `text-text-secondary` | `#5B6479` |
+| `text/inverse` | `text-text-inverse` | `#FFFFFF` |
+| `border/default` | `border-border` | `#DDE3EF` |
+| `accent/primary` | `bg-accent-primary` / `text-accent-primary` | `#2F6FED` |
+| `accent/primary-hover` | `bg-accent-primary-hover` | `#1E58D1` |
+| `accent/danger` | `text-danger` | `#E5484D` |
+| `weather/clear`, `-deep` | `bg-weather-clear[-deep]` | `#4FA6F7` / `#1E63C9` |
+| `weather/cloud`, `-deep` | `bg-weather-cloud[-deep]` | `#8C9BB5` / `#5A6A85` |
+| `weather/rain`, `-deep` | `bg-weather-rain[-deep]` | `#4A6A8A` / `#2E4A68` |
+| `weather/snow`, `-deep` | `bg-weather-snow[-deep]` | `#AFC4DE` / `#7792B8` |
+| `weather/night`, `-deep` | `bg-weather-night[-deep]` | `#1B2748` / `#0D1430` |
+| `radius/sm` | `rounded-sm` | `8px` (overrides Tailwind default) |
+| `radius/md` | `rounded-md` | `16px` (overrides Tailwind default) |
+| `radius/lg` | `rounded-lg` | `24px` (overrides Tailwind default) |
+| `radius/full` | `rounded-full` | `9999px` (Tailwind default, unchanged) |
+
+Type ramp — each Figma text style is one Tailwind utility bundling font-size, line-height, letter-
+spacing, and weight:
+
+| Figma text style | Tailwind utility |
+| --- | --- |
+| `Display/Temperature` | `text-display-temp` |
+| `Heading/City` | `text-heading-city` |
+| `Heading/Section` | `text-heading-section` |
+| `Body/Large` | `text-body-lg` |
+| `Body/Default` | `text-body` |
+| `Body/Strong` | `text-body-strong` |
+| `Caption/Default` | `text-caption` |
+| `Caption/Strong` | `text-caption-strong` |
+| `Label/Default` | `text-label` |
+
+Font: Inter, loaded via Google Fonts `<link>` tags in `index.html` (weights 400/500/600/700),
+applied globally through `--font-sans` and `body { font-family: var(--font-sans) }`.
 
 ## Conventions
 
